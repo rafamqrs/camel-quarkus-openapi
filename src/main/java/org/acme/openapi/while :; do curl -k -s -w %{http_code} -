@@ -1,0 +1,1 @@
+while :; do curl -k -s -w %{http_code} --output /dev/null http://api.smockin.apps.cluster-3090.3090.example.opentlc.com/boletos; echo "";sleep .1; done

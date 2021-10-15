@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: poc-playbooks-gateway
+  namespace: servicemesh-system
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 8080
+      name: http
+      protocol: HTTP
+    hosts:
+    - "test-mesh-system.apps.cluster-35eb.35eb.example.opentlc.com"

@@ -60,12 +60,22 @@ public class CamelRouter extends RouteBuilder {
                 .responseMessage().code(200).message("User successfully returned").endResponseMessage()
                 .to("bean:userService?method=findUser(${header.id})")
 
+                .get("/dummies")
+                .description("GET dummies")
+                .responseMessage().code(200).message("All dummies successfully returned").endResponseMessage()
+                .to("direct:get-dummies")
+
                 .put("/{id}").description("Update a user").type(User.class)
                 .param().name("id").type(path).description("The ID of the user to update").dataType("integer").endParam()
                 .param().name("body").type(body).description("The user to update").endParam()
                 .responseMessage().code(204).message("User successfully updated").endResponseMessage()
                 .to("direct:update-user");
 
+        from("direct:get-dummies")
+        .to("rest:get:/api/v1/employees?host=dummy.restapiexample.com&bridgeEndpoint=true")
+        .convertBodyTo(String.class)
+        .log("CALLED DUMMIES");
+        
         from("direct:update-user")
                 .to("bean:userService?method=updateUser")
                 .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(204))
