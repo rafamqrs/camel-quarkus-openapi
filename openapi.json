@@ -1,0 +1,115 @@
+{
+  "openapi" : "3.0.2",
+  "info" : {
+    "title" : "User API",
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : ""
+  } ],
+  "paths" : {
+    "/users" : {
+      "get" : {
+        "tags" : [ "users" ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/User"
+                  }
+                }
+              }
+            },
+            "description" : "All users successfully returned"
+          }
+        },
+        "operationId" : "verb1",
+        "summary" : "Find all users"
+      }
+    },
+    "/users/{id}" : {
+      "get" : {
+        "tags" : [ "users" ],
+        "parameters" : [ {
+          "name" : "id",
+          "description" : "The ID of the user",
+          "schema" : {
+            "type" : "integer"
+          },
+          "in" : "path",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/User"
+                }
+              }
+            },
+            "description" : "User successfully returned"
+          }
+        },
+        "operationId" : "verb2",
+        "summary" : "Find user by ID"
+      },
+      "put" : {
+        "requestBody" : {
+          "description" : "The user to update",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/User"
+              }
+            }
+          },
+          "required" : true
+        },
+        "tags" : [ "users" ],
+        "parameters" : [ {
+          "name" : "id",
+          "description" : "The ID of the user to update",
+          "schema" : {
+            "type" : "integer"
+          },
+          "in" : "path",
+          "required" : true
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "User successfully updated"
+          }
+        },
+        "operationId" : "verb4",
+        "summary" : "Update a user"
+      }
+    },
+    "/users/dummies" : {
+      "get" : {
+        "tags" : [ "users" ],
+        "responses" : {
+          "200" : {
+            "description" : "All dummies successfully returned"
+          }
+        },
+        "operationId" : "verb3",
+        "summary" : "GET dummies"
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "User" : {
+        "type" : "User"
+      }
+    }
+  },
+  "tags" : [ {
+    "name" : "users",
+    "description" : "User REST service"
+  } ]
+}
