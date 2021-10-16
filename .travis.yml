@@ -1,9 +1,1 @@
 language: java
-jdk: openjdk11
-env:
-  - NODE_NEW_VERSION=lts/*
-install:
-  - nvm install $NODE_NEW_VERSION
-script:
-  - nvm use $NODE_NEW_VERSION
-  - ./ci-build.sh
