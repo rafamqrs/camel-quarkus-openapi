@@ -1,4 +1,5 @@
 # camel-quarkus-openapi-example project
+![Travis](https://app.travis-ci.com/rafamqrs/camel-quarkus-openapi.svg?branch=main)
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
